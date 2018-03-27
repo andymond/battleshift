@@ -1,0 +1,10 @@
+<%= form_tag do %>
+  <%= label_tag :difficulty %>
+  <%= select_tag :difficulty, options_for_select([["Easy", 4], ["Medium", 15], ["Hard", 26]]) %>
+
+  <%= label_tag :opponent_email %>
+  <%= text_field_tag :opponent_email %>
+
+  <%= submit_tag "Invite your Opponent" %>
+
+<% end %>
