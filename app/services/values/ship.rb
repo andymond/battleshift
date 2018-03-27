@@ -2,11 +2,11 @@ class Ship
   attr_reader :length, :damage, :start_space,
               :end_space
 
-  def initialize(length)
-    @length = length
+  def initialize(params = {})
+    @length = params[:ship_size]
     @damage = 0
-    @start_space = nil
-    @end_space = nil
+    @start_space = params[:start_space]
+    @end_space = params[:end_space]
   end
 
   def place(start_space, end_space)
