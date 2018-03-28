@@ -8,6 +8,16 @@ module Api
         render json: games
       end
 
+      def create
+        game = Game.new(player_1_board: Board.new, player_2_board: Board.new)
+        if game.save
+          render json: game
+        else
+          failure = {message: "couldn't create game"}
+          render json: failure
+        end
+      end
+
       def show
         game = Game.find(params[:id])
         render json: game
