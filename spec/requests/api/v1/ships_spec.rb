@@ -13,6 +13,5 @@ describe "Api::V1::Ships" do
 
     post "/api/v1/games/#{game.id}/ships", params: ship, headers: headers
 
-    
   end
 end
