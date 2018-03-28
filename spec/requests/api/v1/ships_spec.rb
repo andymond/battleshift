@@ -13,16 +13,28 @@ describe "Api::V1::Ships" do
 
     post "/api/v1/games/#{game.id}/ships", params: ship, headers: headers
 
-    game = JSON.parse(response.body, symbolize_names: true)
+    ship = JSON.parse(response.body, symbolize_names: true)
 
-    expect(game[:message]).to eq("Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2.")
-    expect(game[:id]).to be_an Integer
-    expect(game[:current_turn]).to be_a String
-    expect(game[:player_1_board][:rows].count).to eq(4)
-    expect(game[:player_2_board][:rows].count).to eq(4)
-    expect(game[:player_1_board][:rows][0][:name]).to eq("row_a")
-    expect(game[:player_1_board][:rows][3][:data][0][:coordinates]).to eq("D1")
-    expect(game[:player_1_board][:rows][3][:data][0][:coordinates]).to eq("D1")
-    expect(game[:player_1_board][:rows][3][:data][0][:status]).to be_a String
+    expect(ship[:message]).to eq("Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2.")
+    expect(ship[:id]).to be_an Integer
+    expect(ship[:current_turn]).to be_a String
+    expect(ship[:player_1_board][:rows].count).to eq(4)
+    expect(ship[:player_2_board][:rows].count).to eq(4)
+    expect(ship[:player_1_board][:rows][0][:name]).to eq("row_a")
+    expect(ship[:player_1_board][:rows][3][:data][0][:coordinates]).to eq("D1")
+    expect(ship[:player_1_board][:rows][3][:data][0][:coordinates]).to eq("D1")
+    expect(ship[:player_1_board][:rows][3][:data][0][:status]).to be_a String
+
+    ship_2 = {
+      ship_size: 2,
+      start_space: "B1",
+      end_space: "C1"
+    }.to_json
+
+    post "/api/v1/games/#{game.id}/ships", params: ship_2, headers: headers
+
+    ship_2 = JSON.parse(response.body, symbolize_names: true)
+
+    expect(ship_2[:message]).to include("Successfully placed ship with a size of 2. You have 0 ship(s) to place.")
   end
 end

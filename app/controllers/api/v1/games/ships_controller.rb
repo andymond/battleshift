@@ -8,7 +8,7 @@ class Api::V1::Games::ShipsController < ApiController
     start_space = params[:ship][:start_space]
     end_space = params[:ship][:end_space]
     ShipPlacer.new(board: board, ship: ship, start_space: start_space, end_space: end_space).run
-    message = "Successfully placed ship with a size of 3. You have 1 ship(s) to place with a size of 2."
+    message = Printer.new(game).placed
     render json: game, message: message
   end
 
