@@ -44,7 +44,6 @@ class TurnProcessor
   def opponent
     user_id = game.colosseums.last.user_id unless game.colosseums.empty?
     Player.new(user_id, game.player_2_board)
-    binding.pry
   end
 
 end
