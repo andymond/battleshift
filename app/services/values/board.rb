@@ -11,6 +11,8 @@ class Board
     if length > 26
       p "Even the ocean isn't that big! Generating a grid of 26."
       26
+    elsif length == 0
+      4
     else
       length
     end
