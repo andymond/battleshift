@@ -8,10 +8,11 @@ class TurnProcessor
   def run!
     begin
       attack_opponent
-      ai_attack_back
+      opponent.user_id.nil? ? ai_attack_back : player_2_attack
       game.save!
     rescue InvalidAttack => e
       @messages << e.message
+      opponent.user_id.nil? ? ai_attack_back : player_2_attack
     end
   end
 
@@ -23,7 +24,7 @@ class TurnProcessor
 
   attr_reader :game, :target
 
-  def attack_opponent
+  def attack_opponent #accept current_player as param?
     result = Shooter.fire!(board: opponent.board, target: target)
     @messages << "Your shot resulted in a #{result}."
     game.player_1_turns += 1
@@ -36,11 +37,14 @@ class TurnProcessor
   end
 
   def player
-    Player.new(game.player_1_board)
+    user_id = game.colosseums.first.user_id unless game.colosseums.empty?
+    Player.new(user_id, game.player_1_board)
   end
 
   def opponent
-    Player.new(game.player_2_board)
+    user_id = game.colosseums.last.user_id unless game.colosseums.empty?
+    Player.new(user_id, game.player_2_board)
+    binding.pry
   end
 
 end
