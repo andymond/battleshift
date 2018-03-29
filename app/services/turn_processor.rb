@@ -29,6 +29,22 @@ class TurnProcessor
     @messages.join(" ")
   end
 
+  def game_over_player_1?
+    if game_over_player_1
+      Printer.new(game).game_over_player_2_win
+    else
+      false
+    end
+  end
+
+  def game_over_player_2?
+    if game_over_player_2
+      Printer.new(game).game_over_player_1_win
+    else
+      false
+    end
+  end
+
   private
 
   attr_reader :game, :target
