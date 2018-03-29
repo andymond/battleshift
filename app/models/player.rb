@@ -1,7 +1,9 @@
 class Player
-  attr_reader :board
+  attr_reader :board, :user_id
 
-  def initialize(board)
+  def initialize(user_id = nil, board)
+    @user_id = user_id
     @board = board
   end
+  
 end

@@ -5,13 +5,23 @@ class TurnProcessor
     @messages = []
   end
 
+  def being_attacked
+    game.current_turn == "player_1" ? player_2 : player_1
+  end
+
+  def change_turn
+    game.current_turn == "player_1" ? game.current_turn = 1 : game.current_turn = 0
+  end
+
   def run!
     begin
-      attack_opponent
-      ai_attack_back
+      attack_opponent(being_attacked)
+      player_2.user_id.nil? ? ai_attack_back : nil
+      change_turn
       game.save!
     rescue InvalidAttack => e
       @messages << e.message
+      player_2.user_id.nil? ? ai_attack_back : nil
     end
   end
 
@@ -23,24 +33,24 @@ class TurnProcessor
 
   attr_reader :game, :target
 
-  def attack_opponent
-    result = Shooter.fire!(board: opponent.board, target: target)
+  def attack_opponent(player)
+    result = Shooter.fire!(board: player.board, target: target)
     @messages << "Your shot resulted in a #{result}."
-    game.player_1_turns += 1
+    game.player_1_board ? game.player_1_turns += 1 : game.player_2_turns += 1
   end
 
   def ai_attack_back
-    result = AiSpaceSelector.new(player.board).fire!
+    result = AiSpaceSelector.new(player_1.board).fire!
     @messages << "The computer's shot resulted in a #{result}."
     game.player_2_turns += 1
   end
 
-  def player
-    Player.new(game.player_1_board)
+  def player_1
+    Player.new(game.player_1, game.player_1_board)
   end
 
-  def opponent
-    Player.new(game.player_2_board)
+  def player_2
+    Player.new(game.player_2, game.player_2_board)
   end
 
 end

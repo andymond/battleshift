@@ -1,7 +1,8 @@
 class Printer
 
-  def initialize(game)
+  def initialize(game, user)
     @game = game
+    @user = user
   end
 
   def placed
@@ -13,12 +14,20 @@ class Printer
   end
 
   def check_contents
-    @game.player_1_board.board.flatten.sum do |space|
+    check_board.sum do |space|
       if space.values[0].contents
         1
       else
         0
       end
+    end
+  end
+
+  def check_board
+    if @user == 1
+      @game.player_1_board.board.flatten
+    else
+      @game.player_2_board.board.flatten
     end
   end
 
