@@ -1,10 +1,14 @@
 require "rails_helper"
 
 describe "games api" do
+  let(:user) { create(:user) }
+  let(:invited_user) { create(:user) }
   it "shows games index" do
     create_list(:game, 3)
 
-    get "/api/v1/games"
+    headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
+
+    get "/api/v1/games", headers: headers
 
     result = JSON.parse(response.body)
 
@@ -21,7 +25,10 @@ describe "games api" do
   it "can create game" do
     create_list(:game, 3)
 
-    post "/api/v1/games", params: {difficulty: 4}
+    headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
+    params = {difficulty: 4}.to_json
+
+    post "/api/v1/games",params: params, headers: headers
 
     expect(response).to be_success
 
@@ -29,6 +36,6 @@ describe "games api" do
 
     expect(result).to be_a Hash
     expect(result["id"]).to eq(7)
-    expect(result["current_turn"]).to eq("challenger")
+    expect(result["current_turn"]).to eq("player_1")
   end
 end
