@@ -2,17 +2,8 @@ require "rails_helper"
 
 describe "As a guest user" do
   describe "when I visit /" do
-    it "I can click on register and be on the registration page" do
-      visit root_path
-
-      click_on "Register"
-
-      expect(current_path).to eq(register_path)
-      expect(page).to have_content("Register to Play")
-    end
-
     it "I can register" do
-      visit register_path
+      visit root_path
 
       fill_in "email", with: "arbitraryemail@thisisntreal.co"
       fill_in "name", with: "Opakawagalaga Eupanifahorious"
@@ -30,7 +21,7 @@ describe "As a guest user" do
     end
 
     it "I can't register without the correct email" do
-      visit register_path
+      visit root_path
 
       fill_in "name", with: "Opakawagalaga Eupanifahorious"
       fill_in "password", with: "password"
@@ -41,7 +32,7 @@ describe "As a guest user" do
     end
 
     it "I can't register without the correct name" do
-      visit register_path
+      visit root_path
 
       fill_in "email", with: "arbitraryemail@thisisntreal.co"
       fill_in "password", with: "password"
@@ -52,7 +43,7 @@ describe "As a guest user" do
     end
 
     it "I can't register without the correct password" do
-      visit register_path
+      visit root_path
 
       fill_in "email", with: "arbitraryemail@thisisntreal.co"
       fill_in "name", with: "Opakawagalaga Eupanifahorious"
@@ -63,7 +54,7 @@ describe "As a guest user" do
     end
 
     it "I can't register without the correct password confirmation" do
-      visit register_path
+      visit root_path
 
       fill_in "email", with: "arbitraryemail@thisisntreal.co"
       fill_in "name", with: "Opakawagalaga Eupanifahorious"
@@ -72,9 +63,9 @@ describe "As a guest user" do
 
       expect(page).to have_content("We sunk your Battleship. Unable to create user account")
     end
-    
+
     it "I can't register without the correctly formated email" do
-      visit register_path
+      visit root_path
 
       fill_in "email", with: "You'll never get me alive!"
       fill_in "name", with: "Opakawagalaga Eupanifahorious"
