@@ -12,7 +12,7 @@ class TurnProcessor
       game.save!
     rescue InvalidAttack => e
       @messages << e.message
-      opponent.user_id.nil? ? ai_attack_back : player_2_attack
+      # opponent.user_id.nil? ? ai_attack_back : player_2_attack
     end
   end
 
@@ -38,12 +38,12 @@ class TurnProcessor
 
   def player
     user_id = game.colosseums.first.user_id unless game.colosseums.empty?
-    Player.new(user_id, game.player_1_board)
+    Player.new(game.player_1, game.player_1_board)
   end
 
   def opponent
     user_id = game.colosseums.last.user_id unless game.colosseums.empty?
-    Player.new(user_id, game.player_2_board)
+    Player.new(game.player_2, game.player_2_board)
   end
 
 end
