@@ -5,7 +5,7 @@ describe "api key verification" do
   let(:player_1_board) { Board.new(4) }
   let(:player_2_board) { Board.new(4) }
   let(:sm_ship)        { Ship.new(2) }
-  let(:game)           { create(:game,
+  let(:game)           { user.games.create(
                          player_1_board: player_1_board,
                          player_2_board: player_2_board)
                        }
