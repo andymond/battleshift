@@ -12,12 +12,12 @@ class Game < ApplicationRecord
   has_many :users, through: :colosseums
 
   def player_1
-    player = colosseums.where("gladiator_number = ?", 1).first
+    player = colosseums.where(gladiator_number: 1).first
     player.user_id unless player.nil?
   end
 
   def player_2
-    player = colosseums.where("gladiator_number = ?", 2).first
+    player = colosseums.where(gladiator_number: 2).first
     player.user_id unless player.nil?
   end
 

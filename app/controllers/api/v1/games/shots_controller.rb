@@ -13,7 +13,6 @@ module Api
 
           render json: game, message: turn_processor.message
         end
-
       end
     end
   end
