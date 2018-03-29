@@ -7,9 +7,10 @@ describe "Api::V1::Shots" do
     let(:player_2_board)   { Board.new(4) }
     let(:sm_ship) { Ship.new(2) }
     let(:game)    {
-      create(:game,
+      user.games.create(
         player_1_board: player_1_board,
-        player_2_board: player_2_board
+        player_2_board: player_2_board,
+        current_turn: 0
       )
     }
 
@@ -57,17 +58,36 @@ describe "Api::V1::Shots" do
     end
 
     it "updates the message but not the board with invalid coordinates" do
-      player_1_board = Board.new(1)
-      player_2_board = Board.new(1)
-      game = create(:game, player_1_board: player_1_board, player_2_board: player_2_board)
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
+      json_payload = {target: "X1"}.to_json
+
+      post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
+
+      game = JSON.parse(response.body, symbolize_names: true)
+      expect(game[:message]).to eq "Invalid coordinates. The computer's shot resulted in a Miss."
+    end
+
+    it "lets two players play each other" do
+      user_2 = create(:user)
+      game.colosseums.create(user_id: user.id, game_id: game.id, gladiator_number: 1)
+      game.colosseums.create(user_id: user_2.id, game_id: game.id, gladiator_number: 2)
 
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
       json_payload = {target: "B1"}.to_json
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
-      game = JSON.parse(response.body, symbolize_names: true)
-      expect(game[:message]).to eq "Invalid coordinates."
-    end
+      turn_1 = JSON.parse(response.body, symbolize_names: true)
+      expect(turn_1[:message]).to eq "Your shot resulted in a Miss."
 
+      expect(turn_1[:player_2_board][:rows][1][:data][0][:status]).to eq("Miss")
+
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id }
+      json_payload = {target: "A1"}.to_json
+      post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
+
+      turn_2 = JSON.parse(response.body, symbolize_names: true)
+      expect(turn_2[:message]).to eq "Your shot resulted in a Miss."
+      expect(turn_2[:player_1_board][:rows][0][:data][0][:status]).to eq("Miss")
+    end
   end
 end
