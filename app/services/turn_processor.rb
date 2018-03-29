@@ -70,4 +70,10 @@ class TurnProcessor
     Player.new(game.player_2, game.player_2_board)
   end
 
+  def game_over_player_1
+  end
+
+  def game_over_player_2
+  end
+
 end
