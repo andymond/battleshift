@@ -5,6 +5,7 @@ class Board
   def initialize(length = 4)
     @length = check_length(length)
     @board = create_grid
+    binding.pry
   end
 
   def check_length(length)
@@ -15,6 +16,12 @@ class Board
       4
     else
       length
+    end
+  end
+
+  def all_ships_sunk?
+    board.flatten.all? do |space|
+      space.values[0].contents.is_sunk? if space.values[0].contents
     end
   end
 
