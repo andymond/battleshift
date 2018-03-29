@@ -9,7 +9,7 @@ module Api
       end
 
       def create
-        game = Game.new(player_1_board: Board.new(params[:difficulty].to_i), player_2_board: Board.new(params[:difficulty].to_i))
+        game = Game.new(current_turn: 0, player_1_board: Board.new(params[:difficulty].to_i), player_2_board: Board.new(params[:difficulty].to_i))
         if game.save
           render json: game
         else
