@@ -24,10 +24,11 @@ describe "games api" do
     post "/api/v1/games", params: {difficulty: 4}
 
     expect(response).to be_success
-  
+
     result = JSON.parse(response.body)
 
     expect(result).to be_a Hash
     expect(result["id"]).to eq(7)
+    expect(result["current_turn"]).to eq("challenger")
   end
 end
