@@ -31,7 +31,7 @@ class TurnProcessor
   end
 
   def game_over_player_1?
-    if game_over_player_1
+    if game.player_1_board.all_ships_sunk?
       Printer.new(game).game_over_player_2_win
     else
       false
@@ -39,7 +39,7 @@ class TurnProcessor
   end
 
   def game_over_player_2?
-    if game_over_player_2
+    if game.player_2_board.all_ships_sunk?
       Printer.new(game).game_over_player_1_win
     else
       false
@@ -68,12 +68,6 @@ class TurnProcessor
 
   def player_2
     Player.new(game.player_2, game.player_2_board)
-  end
-
-  def game_over_player_1
-  end
-
-  def game_over_player_2
   end
 
 end
