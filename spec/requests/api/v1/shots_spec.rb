@@ -3,6 +3,7 @@ require 'rails_helper'
 describe "Api::V1::Shots" do
   context "POST /api/v1/games/:id/shots" do
     let(:user)             { create(:user) }
+    let(:user_2)           { create(:user, email: "whywontthiswork@hotmail.com") }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
     let(:sm_ship) { Ship.new(2) }
@@ -14,12 +15,17 @@ describe "Api::V1::Shots" do
                   }
     let!(:player_1) { game.colosseums.find_by(user_id: user.id).update_attribute(:gladiator_number, "player_1") }
 
-    xit "updates the message and board with a hit" do
+    it "updates the message and board with a hit" do
       allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
-      ShipPlacer.new(board: player_2_board,
-                     ship: sm_ship,
-                     start_space: "A1",
-                     end_space: "A2").run
+      ship = {
+        ship_size: 3,
+        start_space: "A1",
+        end_space: "A3"
+      }.to_json
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id }
+
+      post "/api/v1/games/#{game.id}/ships", params: ship, headers: headers
+
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
       json_payload = {target: "A1"}.to_json
 
@@ -30,6 +36,8 @@ describe "Api::V1::Shots" do
 
       expected_messages = "Your shot resulted in a Hit. The computer's shot resulted in a Miss."
       player_2_targeted_space = game[:player_2_board][:rows].first[:data].first[:status]
+
+      binding.pry
 
       expect(game[:message]).to eq expected_messages
       expect(player_2_targeted_space).to eq("Hit")

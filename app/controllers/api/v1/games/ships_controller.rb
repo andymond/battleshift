@@ -11,6 +11,7 @@ class Api::V1::Games::ShipsController < ApiController
       end_space = params[:ship][:end_space]
       ShipPlacer.new(board: board, ship: ship, start_space: start_space, end_space: end_space).run
       game.save!
+      binding.pry
       message = Printer.new(game, 1).placed
       render json: game, message: message
     else
