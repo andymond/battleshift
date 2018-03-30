@@ -3,7 +3,6 @@ require 'rails_helper'
 describe "Api::V1::Shots" do
   context "POST /api/v1/games/:id/shots" do
     let(:user)             { create(:user) }
-    let(:user_2)           { create(:user, email: "whywontthiswork@hotmail.com") }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
     let(:sm_ship) { Ship.new(2) }
@@ -22,7 +21,7 @@ describe "Api::V1::Shots" do
         start_space: "A1",
         end_space: "A3"
       }.to_json
-      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id }
+      headers = { "CONTENT_TYPE" => "application/json" }
 
       post "/api/v1/games/#{game.id}/ships", params: ship, headers: headers
 

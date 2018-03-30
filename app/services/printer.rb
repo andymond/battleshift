@@ -40,7 +40,7 @@ class Printer
   end
 
   def winner
-    @game.users.find_by(email: game.winner)
+    @game.users.find_by(email: @game.winner)
   end
 
 end
