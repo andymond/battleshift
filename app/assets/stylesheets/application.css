@@ -68,10 +68,6 @@ a {
    .vid-info .acronym { display: none; }
  }
 
- .hidden {
-   display: none;
- }
-
  .welcome-main {
    display: flex;
    justify-content: center;
@@ -101,6 +97,10 @@ a {
 
  .button {
    display: flex;
+ }
+
+ .hidden {
+   display: none;
  }
 
  .form-hidden {
