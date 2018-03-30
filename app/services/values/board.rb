@@ -18,8 +18,8 @@ class Board
   end
 
   def all_sunk?
-    create_grid.flatten.all? do |space|
-      space.values[0].contents.is_sunk? if space.occupied?
+    board.flatten.all? do |space|
+      space.values[0].contents.is_sunk? if space.values[0].occupied?
     end
   end
 
