@@ -7,4 +7,9 @@ class User < ApplicationRecord
   enum status: [:inactive, :active]
   has_many :colosseums
   has_many :games, through: :colosseums
+
+  def player_number(game_id)
+    colosseum = colosseums.find_by(game_id: game_id)
+    colosseum.gladiator_number unless colosseum.nil?
+  end
 end
