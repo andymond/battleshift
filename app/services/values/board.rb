@@ -59,7 +59,6 @@ class Board
     ("1".."26").to_a.shift(@length)
   end
 
-
   def locate_space(coordinates)
     @board.each do |row|
       row.each do |space_hash|
