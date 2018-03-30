@@ -1,4 +1,5 @@
 class TurnProcessor
+
   def initialize(game, target)
     @game   = game
     @target = target
@@ -36,7 +37,7 @@ class TurnProcessor
   def attack_opponent(player)
     result = Shooter.fire!(board: player.board, target: target)
     @messages << "Your shot resulted in a #{result}."
-    game.player_1_board ? game.player_1_turns += 1 : game.player_2_turns += 1
+    game.player_1_board == player.board ? game.player_1_turns += 1 : game.player_2_turns += 1
   end
 
   def ai_attack_back
