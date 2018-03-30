@@ -28,4 +28,10 @@ describe Board, type: :model do
     expect(board.board.first.class).to eq(Array)
     expect(board.board.first.count).to eq(26)
   end
+
+  it "can tell if all ships are sunk" do
+    board = Board.new
+    
+
+  end
 end
