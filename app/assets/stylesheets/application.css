@@ -97,7 +97,7 @@ a {
    margin: 20px;
  }
 
- .button {
+ .register-button {
    display: flex;
  }
 
@@ -105,11 +105,11 @@ a {
    display: none;
  }
 
- .form-hidden {
+ .register-hidden {
    display: none;
  }
 
- .form {
+ .register {
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -137,7 +137,7 @@ a {
    min-width:300px;
    padding:20px;
    width:300px;
-   }
+}
 
 .form-field {
    border: 1px solid #c9b7a2;
@@ -152,12 +152,12 @@ a {
    padding:8px;
    margin-bottom:20px;
    width:280px;
-   }
+}
 
 .form-field:focus {
    background: #241c24;
    color: #725129;
-   }
+}
 
 .form-container h2 {
    text-shadow: #fdf2e4 0 1px 0;
@@ -165,18 +165,18 @@ a {
    margin: 0 0 10px 0;
    font-weight:bold;
    text-align:center;
-    }
+}
 
 .form-title {
    margin-bottom:10px;
    color: #725129;
    text-shadow: #fdf2e4 0 1px 0;
-   }
+}
 
 .submit-container {
    margin:8px 0;
    text-align:right;
-   }
+}
 
 .submit-button {
    border: 1px solid #447314;
@@ -200,7 +200,7 @@ a {
    font-size: 14px;
    text-decoration: none;
    vertical-align: middle;
-   }
+}
 
 .submit-button:hover {
    border: 1px solid #447314;
@@ -213,7 +213,7 @@ a {
    background: -o-linear-gradient(top, #8dc059, #6aa436);
    background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
    color: #fff;
-   }
+}
 
 .submit-button:active {
    text-shadow: #31540c 0 1px 0;
@@ -226,4 +226,16 @@ a {
    background: -o-linear-gradient(top, #6aa436, #8dc059);
    background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
    color: #fff;
-   }
+}
+
+.credits {
+  margin-top:
+}
+
+.login-hidden {
+  display: none;
+}
+
+.login-form {
+  display: flex;
+}
