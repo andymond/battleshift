@@ -3,7 +3,7 @@
     <div class="video-foreground">
       <iframe src="https://www.youtube.com/embed/IQQhdaoSMOs?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=IQQhdaoSMOs" frameborder="0" allowfullscreen></iframe>
       <hidden class="hidden">
-        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/65397994&color=%237c94ac&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/65399005&color=%237c94ac&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
       </hidden>
       Registration Page
     </div>
@@ -12,7 +12,7 @@
     <h1>BattleShift</h1>
     <button class="button">Register</button>
     <form class="form-hidden">
-      Register to Play
+      <h1 class="form-title">Register to Play</h1>
 
       <%= form_tag '/register' do %>
 
@@ -27,8 +27,9 @@
 
         <%= label_tag 'password_confirmation' %>
         <%= password_field_tag 'password_confirmation' %>
-
-        <%= submit_tag 'Create Account' %>
+        <submit class="submit-container">
+          <%= submit_tag 'Create Account' %>
+        </submit>
 
       <% end %>
     </form>
@@ -36,4 +37,7 @@
       <%= link_to "Log in", login_path %>
     </div>
   </section>
+  <credits class="credits">
+    Music : <%= link_to "Song for Sienna", "https://open.spotify.com/track/3JkDhCmTQqMe2MJli79ZEz" %> by <%= link_to "Brian Crane", "http://briancrain.com/" %> and <%= link_to "YuJeong Lee", "http://www.yujeong.net/" %>
+  </credits>
 </section>
