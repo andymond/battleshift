@@ -15,13 +15,14 @@ describe "Api::V1::Shots" do
     let!(:player_1) { game.colosseums.find_by(user_id: user.id).update_attribute(:gladiator_number, "player_1") }
 
     it "updates the message and board with a hit" do
-      allow_any_instance_of(AiSpaceSelector).to receive(:fire!).and_return("Miss")
       ship = {
         ship_size: 3,
         start_space: "A1",
         end_space: "A3"
       }.to_json
-      headers = { "CONTENT_TYPE" => "application/json" }
+      user_2 = create(:user)
+      game.colosseums.create(user_id: user_2.id, game_id: game.id, gladiator_number: 2)
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id}
 
       post "/api/v1/games/#{game.id}/ships", params: ship, headers: headers
 
@@ -33,10 +34,8 @@ describe "Api::V1::Shots" do
       expect(response).to be_success
       game = JSON.parse(response.body, symbolize_names: true)
 
-      expected_messages = "Your shot resulted in a Hit. The computer's shot resulted in a Miss."
+      expected_messages = "Your shot resulted in a Hit."
       player_2_targeted_space = game[:player_2_board][:rows].first[:data].first[:status]
-
-      binding.pry
 
       expect(game[:message]).to eq expected_messages
       expect(player_2_targeted_space).to eq("Hit")
