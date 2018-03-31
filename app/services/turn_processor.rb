@@ -37,6 +37,8 @@ class TurnProcessor
   def attack_opponent(player)
     result = Shooter.fire!(board: player.board, target: target)
     @messages << "Your shot resulted in a #{result}."
+    @messages << "Battleship sunk." if sunk?(result, player.board)
+    @messages << "Game over." if sunk_count(player.board) == 5
     game.player_1_board == player.board ? game.player_1_turns += 1 : game.player_2_turns += 1
   end
 
@@ -52,6 +54,22 @@ class TurnProcessor
 
   def player_2
     Player.new(game.player_2, game.player_2_board)
+  end
+
+  def sunk?(result, board)
+    if result == "Hit"
+      board.board.flatten.any? do |space_hash|
+        space_hash.values[0].contents.is_sunk? if space_hash.keys == [target]
+      end
+    else
+      false
+    end
+  end
+
+  def sunk_count(board)
+    board.board.flatten.count do |space_hash|
+      space_hash.values[0].contents.is_sunk? if space_hash.values[0].occupied?
+    end
   end
 
 end

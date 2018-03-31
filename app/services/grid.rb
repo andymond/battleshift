@@ -1,25 +1,13 @@
-class Board
-  attr_reader :length,
-              :board
+class Grid
+  attr_reader :length
 
-  def initialize(length = 4)
-    @length = check_length(length)
-    @board = create_grid
-  end
-
-  def check_length(length)
-    if length > 26
-      26
-    elsif length == 0
-      4
-    else
-      length
-    end
+  def initialize(length)
+    @length = length
   end
 
   def all_sunk?
-    board.flatten.all? do |space|
-      space.values[0].contents.is_sunk? if space.values[0].occupied?
+    create_grid.flatten.all? do |space|
+      space.values[0].contents.is_sunk? if space.values[0].contents
     end
   end
 
@@ -58,11 +46,4 @@ class Board
     ("1".."26").to_a.shift(@length)
   end
 
-  def locate_space(coordinates)
-    @board.each do |row|
-      row.each do |space_hash|
-        return space_hash[coordinates] if space_hash.keys[0] == coordinates
-      end
-    end
-  end
 end

@@ -31,5 +31,16 @@ class Printer
     end
   end
 
+  def game_over
+    "Your shot resulted in a Hit. Battleship sunk. Game over. Congratulations #{@user.name}, you win! Come sail away!"
+  end
+
+  def game_finished
+    "Invalid move. Game over. #{winner.name} won."
+  end
+
+  def winner
+    @game.users.find_by(email: @game.winner)
+  end
 
 end
