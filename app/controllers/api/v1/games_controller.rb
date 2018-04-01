@@ -1,6 +1,6 @@
 module Api
   module V1
-    class GamesController < ActionController::API
+    class GamesController < ApiController
       rescue_from ActiveRecord::RecordNotFound, :with => :game_not_found
 
       def index
@@ -12,7 +12,7 @@ module Api
         user_id = request.headers["HTTP_X_API_KEY"]
         player_1 = User.find(user_id)
         player_2 = User.find_by(email: params[:opponent_email])
-        game = Game.new(current_turn: 0, player_1_board: Board.new(params[:difficulty].to_i), player_2_board: Board.new(params[:difficulty].to_i))
+        game = current_user.games.new(game_params)
         if game.save
           game.colosseums.create(user_id: player_1.id, gladiator_number: 1)
           game.colosseums.create(user_id: player_2.id, gladiator_number: 2) unless player_2.nil?
@@ -32,6 +32,14 @@ module Api
 
         def game_not_found
           render status: 404
+        end
+
+        def game_params
+          {
+            current_turn: 0,
+            player_1_board: Board.new(params[:difficulty].to_i),
+            player_2_board: Board.new(params[:difficulty].to_i)
+          }
         end
     end
   end
