@@ -1,0 +1,272 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$blue-grey: #536872;
+$blue-steel: #536878;
+$light-grey: #708090;
+$dark-blue-grey: #36454f;
+$steel: #6e7f80;
+
+body {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #00FFFF;
+}
+
+* { box-sizing: border-box; }
+
+ .video-background {
+   background: #000;
+   position: fixed;
+   top: 0; right: 0; bottom: 0; left: 0;
+   z-index: -99;
+ }
+
+ .video-foreground,
+ .video-background iframe {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   pointer-events: none;
+ }
+
+ #vidtop-content {
+ 	top: 0;
+ 	color: #fff;
+ }
+
+ .vid-info { position: absolute; top: 0; right: 0; width: 33%; background: rgba(0,0,0,0.3); color: #fff; padding: 1rem; font-family: Avenir, Helvetica, sans-serif; }
+ .vid-info h1 { font-size: 2rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+ .vid-info a { display: block; color: #fff; text-decoration: none; background: rgba(0,0,0,0.5); transition: .6s background; border-bottom: none; margin: 1rem auto; text-align: center; }
+
+ @media (min-aspect-ratio: 16/9) {
+   .video-foreground { height: 300%; top: -100%; }
+  }
+
+ @media (max-aspect-ratio: 16/9) {
+   .video-foreground { width: 300%; left: -100%; }
+  }
+
+ @media all and (max-width: 600px) {
+   .vid-info { width: 50%; padding: .5rem; }
+   .vid-info h1 { margin-bottom: .2rem; }
+ }
+
+ @media all and (max-width: 500px) {
+   .vid-info .acronym { display: none; }
+ }
+
+ .welcome-main {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   font-family: Roboto;
+ }
+
+ .welcome-login {
+   min-height: 250px;
+   width: 30%;
+   background-color: rgba(112,128,144,0.5);
+   border-radius: 5%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .welcome-login a {
+   margin: 20px;
+ }
+
+ .welcome-login h1 {
+   color: white;
+   font-size: 35pt;
+   margin: 20px;
+   font-family: Permanent Marker;
+ }
+
+ .register-button {
+   display: flex;
+   justify-content: center;
+   border: 1px solid $blue-grey;
+   background: $light-grey;
+   border-radius: 13px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+   color: white;
+   font-family: helvetica, serif;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   min-width: 100px;
+   margin: 10px;
+ }
+
+ .hidden {
+   display: none;
+ }
+
+ .register-hidden {
+   display: none;
+ }
+
+ .register {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .form-container {
+   border: 1px solid #f2e3d2;
+   background: #c9b7a2;
+   border-radius: 8px;
+   box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+   font-family: 'Helvetica Neue',Helvetica,sans-serif;
+   text-decoration: none;
+   vertical-align: middle;
+   min-width:300px;
+   padding:20px;
+   width:300px;
+}
+
+.form-field {
+   border: 1px solid $dark-blue-grey;
+   background: $light-grey;
+   border-radius: 4px;
+   color: white;
+   box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+   padding:8px;
+   margin-bottom:20px;
+   width:280px;
+}
+
+.form-field:focus {
+   background: $dark-blue-grey;
+   color: white;
+}
+
+.form-container h2 {
+   text-shadow: #fdf2e4 0 1px 0;
+   font-size:18px;
+   margin: 0 0 10px 0;
+   font-weight:bold;
+   text-align:center;
+}
+
+.form-title {
+   margin-bottom:10px;
+   color: white;
+   text-shadow: #fdf2e4 0 1px 0;
+}
+
+.submit-container {
+   margin:8px 0;
+   text-align:right;
+}
+
+.submit-button {
+   border: 1px solid $blue-grey;
+   background: $light-grey;
+   border-radius: 13px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+   color: white;
+   font-family: helvetica, serif;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   margin: 10px;
+}
+
+.submit-button:hover {
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
+   color: #fff;
+}
+
+.submit-button:active {
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
+   color: #fff;
+}
+
+.login-button {
+  border: 1px solid $blue-grey;
+  background: $light-grey;
+  border-radius: 13px;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  color: white;
+  font-family: helvetica, serif;
+  padding: 8.5px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+  margin: 10px;
+  min-width: 100px;
+}
+
+.credits {
+  margin-top: 59px;
+}
+
+.login-hidden {
+  display: none;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-button:hover {
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
+   color: #fff;
+}
+
+.register-button:active {
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
+   color: #fff;
+}
+
+.login-button:hover {
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
+   color: #fff;
+}
+
+.login-button:active {
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
+   color: #fff;
+}
+
+.required {
+  color: red;
+}
