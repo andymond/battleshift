@@ -24,7 +24,7 @@ module Api
 
           def game_over?
             if current_game.winner
-              render json: current_game, status: 400, message: Printer.new(current_game, user).game_finished
+              render json: current_game, status: 400, message: Printer.new(current_game, current_user).game_finished
             end
           end
 
