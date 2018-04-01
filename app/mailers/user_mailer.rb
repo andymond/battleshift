@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
 
   def activation_invite(user)
     @user = user
-    @url = "#{ENV['root']}/activate/#{@user.id}"
+    @url = "#{ENV['root']}/activation/#{@user.id}"
     mail(to: @user.email, subject: 'Activate your BattleShift account')
   end
 
