@@ -24,10 +24,12 @@ function showRegister () {
   register.classList.toggle("hidden")
   registerForm.classList.toggle("register")
   login.className = "login-button"
+  loginForm.className = "login-hidden"
 }
 
 function showLogin () {
   login.classList.toggle("hidden")
   loginForm.classList.toggle("login-form")
   register.className = "register-button"
+  registerForm.className = "register-hidden"
 }

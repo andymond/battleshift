@@ -14,6 +14,12 @@
  *= require_self
  */
 
+$blue-grey: #536872;
+$blue-steel: #536878;
+$light-grey: #708090;
+$dark-blue-grey: #36454f;
+$steel: #6e7f80;
+
 body {
   margin: 0px;
 }
@@ -74,12 +80,13 @@ a {
    justify-content: center;
    align-items: center;
    color: white;
+   font-family: Roboto;
  }
 
  .welcome-login {
    min-height: 250px;
    width: 30%;
-   background-color: rgba(0,0,0,0.5);
+   background-color: rgba(112,128,144,0.5);
    border-radius: 5%;
    display: flex;
    flex-direction: column;
@@ -95,10 +102,24 @@ a {
    color: white;
    font-size: 35pt;
    margin: 20px;
+   font-family: Permanent Marker;
  }
 
  .register-button {
    display: flex;
+   justify-content: center;
+   border: 1px solid $blue-grey;
+   background: $light-grey;
+   border-radius: 13px;
+   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+   color: white;
+   font-family: helvetica, serif;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   min-width: 100px;
+   margin: 10px;
  }
 
  .hidden {
@@ -112,24 +133,12 @@ a {
  .register {
    display: flex;
    flex-direction: column;
-   align-items: center;
-
  }
 
  .form-container {
    border: 1px solid #f2e3d2;
    background: #c9b7a2;
-   background: -webkit-gradient(linear, left top, left bottom, from(#383430), to(#c9b7a2));
-   background: -webkit-linear-gradient(top, #383430, #c9b7a2);
-   background: -moz-linear-gradient(top, #383430, #c9b7a2);
-   background: -ms-linear-gradient(top, #383430, #c9b7a2);
-   background: -o-linear-gradient(top, #383430, #c9b7a2);
-   background-image: -ms-linear-gradient(top, #383430 0%, #c9b7a2 100%);
-   -webkit-border-radius: 8px;
-   -moz-border-radius: 8px;
    border-radius: 8px;
-   -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
-   -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    font-family: 'Helvetica Neue',Helvetica,sans-serif;
    text-decoration: none;
@@ -140,14 +149,10 @@ a {
 }
 
 .form-field {
-   border: 1px solid #c9b7a2;
-   background: #e4d5c3;
-   -webkit-border-radius: 4px;
-   -moz-border-radius: 4px;
+   border: 1px solid $dark-blue-grey;
+   background: $light-grey;
    border-radius: 4px;
-   color: #c9b7a2;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
+   color: $steel;
    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(000,000,000,0.7) 0 1px 1px;
    padding:8px;
    margin-bottom:20px;
@@ -155,8 +160,8 @@ a {
 }
 
 .form-field:focus {
-   background: #241c24;
-   color: #725129;
+   background: $dark-blue-grey;
+   color: white;
 }
 
 .form-container h2 {
@@ -169,7 +174,7 @@ a {
 
 .form-title {
    margin-bottom:10px;
-   color: #725129;
+   color: white;
    text-shadow: #fdf2e4 0 1px 0;
 }
 
@@ -179,57 +184,50 @@ a {
 }
 
 .submit-button {
-   border: 1px solid #447314;
-   background: #6aa436;
-   background: -webkit-gradient(linear, left top, left bottom, from(#8dc059), to(#6aa436));
-   background: -webkit-linear-gradient(top, #8dc059, #6aa436);
-   background: -moz-linear-gradient(top, #8dc059, #6aa436);
-   background: -ms-linear-gradient(top, #8dc059, #6aa436);
-   background: -o-linear-gradient(top, #8dc059, #6aa436);
-   background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
-   -webkit-border-radius: 13px;
-   -moz-border-radius: 13px;
+   border: 1px solid $blue-grey;
+   background: $light-grey;
    border-radius: 13px;
-   -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
-   text-shadow: #addc7e 0 1px 0;
-   color: #31540c;
+   color: white;
    font-family: helvetica, serif;
    padding: 8.5px 18px;
    font-size: 14px;
    text-decoration: none;
    vertical-align: middle;
+   margin: 10px;
 }
 
 .submit-button:hover {
-   border: 1px solid #447314;
-   text-shadow: #31540c 0 1px 0;
-   background: #6aa436;
-   background: -webkit-gradient(linear, left top, left bottom, from(#8dc059), to(#6aa436));
-   background: -webkit-linear-gradient(top, #8dc059, #6aa436);
-   background: -moz-linear-gradient(top, #8dc059, #6aa436);
-   background: -ms-linear-gradient(top, #8dc059, #6aa436);
-   background: -o-linear-gradient(top, #8dc059, #6aa436);
-   background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
    color: #fff;
 }
 
 .submit-button:active {
-   text-shadow: #31540c 0 1px 0;
-   border: 1px solid #447314;
-   background: #8dc059;
-   background: -webkit-gradient(linear, left top, left bottom, from(#6aa436), to(#6aa436));
-   background: -webkit-linear-gradient(top, #6aa436, #8dc059);
-   background: -moz-linear-gradient(top, #6aa436, #8dc059);
-   background: -ms-linear-gradient(top, #6aa436, #8dc059);
-   background: -o-linear-gradient(top, #6aa436, #8dc059);
-   background-image: -ms-linear-gradient(top, #6aa436 0%, #8dc059 100%);
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
    color: #fff;
 }
 
+.login-button {
+  border: 1px solid $blue-grey;
+  background: $light-grey;
+  border-radius: 13px;
+  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 0px 0;
+  color: white;
+  font-family: helvetica, serif;
+  padding: 8.5px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
+  margin: 10px;
+  min-width: 100px;
+}
+
 .credits {
-  margin-top:
+  margin-top: 59px;
 }
 
 .login-hidden {
@@ -238,4 +236,33 @@ a {
 
 .login-form {
   display: flex;
+  flex-direction: column;
+}
+
+.register-button:hover {
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
+   color: #fff;
+}
+
+.register-button:active {
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
+   color: #fff;
+}
+
+.login-button:hover {
+   border: 1px solid $blue-grey;
+   text-shadow: $dark-blue-grey 0 1px 0;
+   background: $steel;
+   color: #fff;
+}
+
+.login-button:active {
+   text-shadow: $dark-blue-grey 0 1px 0;
+   border: 1px solid $dark-blue-grey;
+   background: $blue-steel;
+   color: #fff;
 }

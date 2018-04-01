@@ -10,31 +10,48 @@
   </div>
   <section class="welcome-login">
     <h1>BattleShift</h1>
-    <button class="register-button">Register</button>
     <form class="register-hidden">
-      <h1 class="form-title">Register to Play</h1>
+      <form class="form-container">
+        <h2>Register to Play</h2>
 
-      <%= form_tag '/register' do %>
+        <%= form_tag '/register' do %>
 
-        <%= label_tag 'name' %>
-        <%= text_field_tag 'name' %>
+        <%= label_tag 'name', nil, :class => "form-title" %>
+        <%= text_field_tag 'name', "", :class => "form-field" %>
 
-        <%= label_tag 'email' %>
-        <%= email_field_tag 'email' %>
+        <%= label_tag 'email', nil, :class => "form-title" %>
+        <%= email_field_tag 'email', "", :class => "form-field" %>
 
-        <%= label_tag 'password' %>
-        <%= password_field_tag 'password' %>
+        <%= label_tag 'password', nil, :class => "form-title" %>
+        <%= password_field_tag 'password', "", :class => "form-field" %>
 
-        <%= label_tag 'password_confirmation' %>
-        <%= password_field_tag 'password_confirmation' %>
+        <%= label_tag 'password_confirmation', nil, :class => "form-title" %>
+        <%= password_field_tag 'password_confirmation', "", :class => "form-field" %>
+
         <submit class="submit-container">
-          <%= submit_tag 'Create Account' %>
+          <%= submit_tag 'Create Account', :class => "submit-button" %>
         </submit>
 
-      <% end %>
+        <% end %>
+      </form>
     </form>
+    <form class="login-hidden">
+      <form class="form-container">
+        <%= form_tag '/login' do %>
+          <%= label_tag 'email', nil, :class => "form-title" %>
+          <%= text_field_tag 'email', "", :class => "form-field" %>
+
+          <%= label_tag 'password', nil, :class => "form-title" %>
+          <%= password_field_tag 'password', "", :class => "form-field" %>
+
+          <submit class="submit-container">
+            <%= submit_tag 'Log In', :class => "submit-button" %>
+          </submit>
+        <% end %>
+      </form>
+    </form>
+    <button class="register-button">Register</button>
     <button class="login-button">Log In</button>
-    <section class="login-hidden">I is a login field lol</section>
   </section>
   <credits class="credits">
     Music : <%= link_to "Song for Sienna", "https://open.spotify.com/track/3JkDhCmTQqMe2MJli79ZEz" %> by <%= link_to "Brian Crane", "http://briancrain.com/" %> and <%= link_to "YuJeong Lee", "http://www.yujeong.net/" %>
