@@ -1,0 +1,23 @@
+<h2>Games in Progress</h2>
+
+<ul>
+  <% count = 1 %>
+  <% current_user.current_games.each do |game| %>
+    <li>
+      <%= link_to "Game ##{count}", game_path(game) %>
+      <% count += 1 %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Total Wins</h2>
+
+<p><%= current_user.wins %></p>
+
+<h2>Total Losses</h2>
+
+<p><%= current_user.losses %></p>
+
+<h2>W/L Percentage</h2>
+
+<p><%= number_to_percentage(current_user.win_loss_percentage, precision: 0) %></p>
