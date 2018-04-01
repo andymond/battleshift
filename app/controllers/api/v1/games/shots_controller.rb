@@ -9,7 +9,7 @@ module Api
           turn_processor = TurnProcessor.new(current_game, params[:shot][:target])
           turn_processor.run!
           if turn_processor.message.include?("Game over")
-            current_game.update_attributes(winner: user.email)
+            current_game.update_attributes(winner: current_user.email)
             render json: current_game, message: turn_processor.message
           else
             if turn_processor.message.include?("Invalid")
