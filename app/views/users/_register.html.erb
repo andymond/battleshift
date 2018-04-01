@@ -1,29 +1,29 @@
 <h2>Register to Play</h2>
 
-<%= form_for @user do |f| %>
+<%= form_tag '/register' do %>
 
 <required class="required">
-<%= f.label 'name', nil, :class => "form-title" %> *
+<%= label_tag 'name', nil, :class => "form-title" %> *
 </required>
-<%= f.text_field 'name', "", :class => "form-field" %>
+<%= text_field_tag 'name', "", :class => "form-field" %>
 
 <required class="required">
-<%= f.label 'email', nil, :class => "form-title" %> *
+<%= label_tag 'email', nil, :class => "form-title" %> *
 </required>
-<%= f.email_field 'email', "", :class => "form-field" %>
+<%= email_field_tag 'email', "", :class => "form-field" %>
 
 <required class="required">
-<%= f.label 'password', nil, :class => "form-title" %> *
+<%= label_tag 'password', nil, :class => "form-title" %> *
 </required>
-<%= f.password_field 'password', "", :class => "form-field" %>
+<%= password_field_tag 'password', "", :class => "form-field" %>
 
 <required class="required">
-<%= f.label 'password_confirmation', nil, :class => "form-title" %> *
+<%= label_tag 'password_confirmation', nil, :class => "form-title" %> *
 </required>
-<%= f.password_field 'password_confirmation', "", :class => "form-field" %>
+<%= password_field_tag 'password_confirmation', "", :class => "form-field" %>
 
 <submit class="submit-container">
-  <%= f.submit 'Create Account', :class => "submit-button" %>
+  <%= submit_tag 'Create Account', :class => "submit-button" %>
 </submit>
 
 <% end %>

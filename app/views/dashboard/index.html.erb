@@ -1,5 +1,6 @@
 <section class="dashboard-container">
   Logged in as <%= current_user.name %>
+  <%= link_to "Log Out", logout_path, method: "delete" %>
 
   <p>Status: <%= current_user.status %></p>
 

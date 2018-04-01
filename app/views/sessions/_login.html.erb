@@ -1,0 +1,18 @@
+<h2>Login to Play</h2>
+
+<%= form_tag({controller: 'sessions', action: 'create'}, method: "post") do %>
+
+  <required class="required">
+  <%= label_tag 'email', nil, :class => "form-title" %> *
+  </required>
+  <%= text_field_tag 'email', "", :class => "form-field" %>
+
+  <required class="required">
+  <%= label_tag 'password', nil, :class => "form-title" %> *
+  </required>
+  <%= password_field_tag 'password', "", :class => "form-field" %>
+
+  <submit class="submit-container">
+    <%= submit_tag 'Log In', :class => "submit-button" %>
+  </submit>
+<% end %>
