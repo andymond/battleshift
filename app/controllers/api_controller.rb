@@ -6,7 +6,7 @@ class ApiController < ActionController::API
     end
 
     def current_game
-      @game ||= current_user.games.find(params[:game_id])
+      @game ||= current_user.games.find_by(id: params[:game_id])
     end
 
     def current_board
