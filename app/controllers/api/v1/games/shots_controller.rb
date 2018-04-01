@@ -2,6 +2,7 @@ module Api
   module V1
     module Games
       class ShotsController < ApiController
+        before_action :authorize_player
         before_action :game_over?
         before_action :current_turn
 
@@ -21,6 +22,11 @@ module Api
         end
 
         private
+
+          def authorize_player
+            not_found = { message: "Not Found" }
+            render json: not_found, status: 400 if current_game.nil?
+          end
 
           def game_over?
             if current_game.winner
