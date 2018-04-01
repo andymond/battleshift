@@ -117,5 +117,18 @@ describe "Api::V1::Shots" do
       expect(turn_2[:message]).to eq "Invalid move. It's your opponent's turn"
       expect(turn_2[:player_2_board][:rows][0][:data][0][:status]).to eq("Not Attacked")
     end
+
+    it "doesn't let users play other user's games" do
+      different_game = create(:game)
+
+      headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
+      json_payload = {target: "B1"}.to_json
+      post "/api/v1/games/#{different_game.id}/shots", params: json_payload, headers: headers
+
+      result = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(400)
+      expect(result[:message]).to eq("Not Found")
+    end
   end
 end
