@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
-      flash[:notice] = "Is that seriously your email? Account created"
+      UserMailer.activation_invite(user).deliver_now
+      flash[:notice] = "Account created. Please check your email to activate your account."
       redirect_to dashboard_path
     else
       flash[:notice] = "We sunk your Battleship. Unable to create user account"
