@@ -1,7 +1,9 @@
-Logged in as <%= current_user.name %>
+<section class="dashboard-container">
+  Logged in as <%= current_user.name %>
 
-<p>Status: <%= current_user.status %></p>
+  <p>Status: <%= current_user.status %></p>
 
-<%= link_to "New Game", new_game_path %>
+  <%= link_to "New Game", new_game_path %>
 
-<%= render partial: "wins" if !current_user.games.empty? %>
+  <%= render partial: "wins" if !current_user.games.empty? %>
+</section

@@ -1,0 +1,29 @@
+<h2>Register to Play</h2>
+
+<%= form_for @user do |f| %>
+
+<required class="required">
+<%= f.label 'name', nil, :class => "form-title" %> *
+</required>
+<%= f.text_field 'name', "", :class => "form-field" %>
+
+<required class="required">
+<%= f.label 'email', nil, :class => "form-title" %> *
+</required>
+<%= f.email_field 'email', "", :class => "form-field" %>
+
+<required class="required">
+<%= f.label 'password', nil, :class => "form-title" %> *
+</required>
+<%= f.password_field 'password', "", :class => "form-field" %>
+
+<required class="required">
+<%= f.label 'password_confirmation', nil, :class => "form-title" %> *
+</required>
+<%= f.password_field 'password_confirmation', "", :class => "form-field" %>
+
+<submit class="submit-container">
+  <%= f.submit 'Create Account', :class => "submit-button" %>
+</submit>
+
+<% end %>
