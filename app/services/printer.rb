@@ -39,6 +39,10 @@ class Printer
     "Invalid move. Game over. #{winner.name} won."
   end
 
+  def all_placed
+    "Your navy isn't that big! All ships placed"
+  end
+
   def winner
     @game.users.find_by(email: @game.winner)
   end

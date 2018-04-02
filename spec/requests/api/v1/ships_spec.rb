@@ -128,6 +128,6 @@ describe "Api::V1::Ships" do
 
     ship_3 = JSON.parse(response.body, symbolize_names: true)
 
-    expect(ship_3[:message]).to include("Your navy isn't that big! All ships places")
+    expect(ship_3[:message]).to include("Your navy isn't that big! All ships placed")
   end
 end

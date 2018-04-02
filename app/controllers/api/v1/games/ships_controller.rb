@@ -1,4 +1,5 @@
 class Api::V1::Games::ShipsController < ApiController
+  before_action :all_placed?
 
   def create
     ship = Ship.new(params[:ship][:ship_size])
@@ -22,6 +23,12 @@ class Api::V1::Games::ShipsController < ApiController
         start_space: params[:ship][:start_space],
         end_space: params[:ship][:end_space]
       }
+    end
+
+    def all_placed?
+      if current_board.all_placed?
+        render json: current_game, message: Printer.new(current_game, 1).all_placed
+      end
     end
 
 end
