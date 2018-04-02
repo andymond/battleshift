@@ -11,7 +11,7 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.action_mailer.default_url_options = { :host => "https://banana-tart-60248.herokuapp.com" }
+  config.action_mailer.default_url_options = { host: ENV['ROOT'] }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
