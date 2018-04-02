@@ -65,4 +65,22 @@ class Board
       end
     end
   end
+
+  def all_placed?
+    if placed_count == 5
+      true
+    else
+      false
+    end
+  end
+
+  def placed_count
+    @board.flatten.sum do |space|
+      if !space.values[0].contents.nil?
+        1
+      else
+        0
+      end
+    end
+  end
 end

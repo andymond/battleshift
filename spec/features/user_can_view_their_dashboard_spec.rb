@@ -19,15 +19,15 @@ describe "As a registered User" do
     end
 
     it "I can see how many wins I've had" do
-      expect(page).to have_content("Wins 1")
+      expect(page).to have_content("Wins: 1")
     end
 
     it "I can see how many losses I've had" do
-      expect(page).to have_content("Losses 1")
+      expect(page).to have_content("Losses: 1")
     end
 
     it "I can see my win/loss percentage" do
-      expect(page).to have_content("W/L Percentage 50%")
+      expect(page).to have_content("W/L Percentage: 50%")
     end
 
     it "I can see the games I'm currently playing" do
