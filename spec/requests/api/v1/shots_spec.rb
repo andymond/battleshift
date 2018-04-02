@@ -3,9 +3,9 @@ require 'rails_helper'
 describe "Api::V1::Shots" do
   context "POST /api/v1/games/:id/shots" do
     let(:user)             { create(:user) }
+    let(:user_2)           { create(:user) }
     let(:player_1_board)   { Board.new(4) }
     let(:player_2_board)   { Board.new(4) }
-    let(:sm_ship) { Ship.new(2) }
     let(:game)    { user.games.create(
                     player_1_board: player_1_board,
                     player_2_board: player_2_board,
@@ -20,7 +20,6 @@ describe "Api::V1::Shots" do
         start_space: "A1",
         end_space: "A3"
       }.to_json
-      user_2 = create(:user)
       game.colosseums.create(user_id: user_2.id, game_id: game.id, gladiator_number: 2)
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id}
 
@@ -71,17 +70,16 @@ describe "Api::V1::Shots" do
     end
 
     it "lets two players play each other" do
-      user_2 = create(:user)
-      game.colosseums.create(user_id: user.id, game_id: game.id, gladiator_number: 1)
+      current_user = spy('current_user')
       game.colosseums.create(user_id: user_2.id, game_id: game.id, gladiator_number: 2)
-
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
       json_payload = {target: "B1"}.to_json
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       turn_1 = JSON.parse(response.body, symbolize_names: true)
-      expect(turn_1[:message]).to eq "Your shot resulted in a Miss."
 
+      expect(current_user).to have_recieved(:player_number)
+      expect(turn_1[:message]).to eq "Your shot resulted in a Miss."
       expect(turn_1[:player_2_board][:rows][1][:data][0][:status]).to eq("Miss")
 
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user_2.id }
@@ -89,21 +87,20 @@ describe "Api::V1::Shots" do
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       turn_2 = JSON.parse(response.body, symbolize_names: true)
+
+      expect(current_user).to have_recieved(:player_number)
       expect(turn_2[:message]).to eq "Your shot resulted in a Miss."
       expect(turn_2[:player_1_board][:rows][0][:data][0][:status]).to eq("Miss")
     end
 
     it "doesn't let user go twice in a row" do
-      user_2 = create(:user)
-      game.colosseums.create(user_id: user_2.id, game_id: game.id, gladiator_number: 2)
-
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
       json_payload = {target: "B1"}.to_json
       post "/api/v1/games/#{game.id}/shots", params: json_payload, headers: headers
 
       turn_1 = JSON.parse(response.body, symbolize_names: true)
 
-      expect(turn_1[:message]).to eq "Your shot resulted in a Miss."
+      expect(turn_1[:message]).to include "Your shot resulted in a Miss."
       expect(turn_1[:player_2_board][:rows][1][:data][0][:status]).to eq("Miss")
 
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
@@ -119,7 +116,7 @@ describe "Api::V1::Shots" do
     end
 
     it "doesn't let users play other user's games" do
-      different_game = create(:game)
+      different_game = double('game', id: 100)
 
       headers = { "CONTENT_TYPE" => "application/json", "X-API-KEY" => user.id }
       json_payload = {target: "B1"}.to_json
