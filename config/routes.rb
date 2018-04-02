@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
-
   root 'welcome#index'
   get "/register", :to => 'users#new'
   post "/register", :to => 'users#create'
