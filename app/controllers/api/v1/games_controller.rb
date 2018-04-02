@@ -9,10 +9,9 @@ module Api
       end
 
       def create
-        user_id = request.headers["HTTP_X_API_KEY"]
-        player_1 = User.find(user_id)
+        player_1 = current_user
         player_2 = User.find_by(email: params[:opponent_email])
-        game = current_user.games.new(game_params)
+        game = Game.new(game_params)
         if game.save
           game.colosseums.create(user_id: player_1.id, gladiator_number: 1)
           game.colosseums.create(user_id: player_2.id, gladiator_number: 2) unless player_2.nil?
