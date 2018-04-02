@@ -9,16 +9,8 @@ module Api
         def create
           turn_processor = TurnProcessor.new(current_game, params[:shot][:target])
           turn_processor.run!
-          if turn_processor.message.include?("Game over")
-            current_game.update_attributes(winner: current_user.email)
-            render json: current_game, message: turn_processor.message
-          else
-            if turn_processor.message.include?("Invalid")
-              render json: current_game , status: 400, message: turn_processor.message
-            else
-              render json: current_game, message: turn_processor.message
-            end
-          end
+          current_game.update_attributes(winner: current_user.email) if turn_processor.message.include?("Game over")
+          render json: current_game, status: turn_processor.status, message: turn_processor.message
         end
 
         private
@@ -40,7 +32,7 @@ module Api
 
           def current_turn
             unless current_player == current_game.current_turn
-            render json: current_game , status: 400, message: "Invalid move. It's your opponent's turn"
+            render json: current_game, status: 400, message: "Invalid move. It's your opponent's turn"
             end
           end
       end
