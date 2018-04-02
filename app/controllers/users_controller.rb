@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to dashboard_path
     else
       flash[:notice] = "We sunk your Battleship. Unable to create user account"
-      render :new
+      redirect_to root_path
     end
   end
 
