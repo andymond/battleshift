@@ -31,7 +31,19 @@ describe Board, type: :model do
 
   it "can tell if all ships are sunk" do
     board = Board.new
-    
+    ship = Ship.new(2)
+    ship.place("A1", "A2")
+    ship_2 = Ship.new(3)
+    ship_2.place("B1", "B3")
+    ShipPlacer.new(board: board, ship: ship, start_space: "A1", end_space: "A2").run
+    ShipPlacer.new(board: board, ship: ship_2, start_space: "B1", end_space: "B3").run
 
+    expect(board.all_sunk?).to eq(false)
+  end
+
+  it "defaults to board size 4" do
+    board = Board.new(0)
+
+    expect(board.length).to eq(4)
   end
 end
