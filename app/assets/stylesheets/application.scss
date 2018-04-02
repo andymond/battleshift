@@ -358,3 +358,17 @@ a {
   font-size: 18pt;
   font-weight: bold;
 }
+
+.notice {
+  background-color: $blue-steel;
+  color: white;
+}
+
+.error {
+  background-color: #990000;
+  color: white;
+}
+
+.alert {
+  background-color: #00DDDD;
+}
