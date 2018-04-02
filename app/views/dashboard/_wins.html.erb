@@ -3,10 +3,8 @@
 <ul>
   <% count = 1 %>
   <% current_user.current_games.each do |game| %>
-    <li>
-      <button class="submit-button"><%= link_to "Game ##{count}", game_path(game) %></button>
-      <% count += 1 %>
-    </li>
+    <button class="submit-button"><%= link_to "Game ##{count}", game_path(game) %></button>
+    <% count += 1 %>
   <% end %>
 </ul>
 
