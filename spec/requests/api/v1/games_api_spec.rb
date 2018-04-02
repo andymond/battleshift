@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "games api" do
-  let(:user) { create(:user) }
+  let(:user)         { create(:user) }
   let(:invited_user) { create(:user) }
   it "shows games index" do
     create_list(:game, 3)
