@@ -81,7 +81,7 @@ describe "Api::V1::Ships" do
     expect(ship_2[:message]).to include("Successfully placed ship with a size of 2. You have 0 ship(s) to place.")
   end
 
-  it "can place player 2 ships" do
+  it "cannot place more then two ships" do
     game.colosseums.create(user_id: user.id, gladiator_number: 1)
     game.colosseums.create(user_id: user_2.id, gladiator_number: 1)
 
