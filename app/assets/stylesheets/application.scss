@@ -136,8 +136,7 @@ a {
  }
 
  .form-container {
-   border: 1px solid #f2e3d2;
-   background: #c9b7a2;
+   background: rgba(0,0,0,0);
    border-radius: 8px;
    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
    font-family: 'Helvetica Neue',Helvetica,sans-serif;
@@ -146,6 +145,9 @@ a {
    min-width:300px;
    padding:20px;
    width:300px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
 .form-field {
@@ -269,4 +271,90 @@ a {
 
 .required {
   color: red;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-header {
+  width: 100%;
+  height: 40px;
+  background-color: $blue-steel;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  color: white;
+  font-size: 35pt;
+  margin: 20px;
+  font-family: Permanent Marker;
+}
+
+.dashboard-footer {
+  width: 100%;
+  background-color: $blue-steel;
+  height: 40px;
+}
+
+.dashboard-body {
+  background: url("https://www.wallpaperup.com/uploads/wallpapers/2014/04/10/328711/43e32f547bed0f5e90e42151bb4900ff.jpg");
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 670px;
+  background-size: cover;
+}
+
+.user-details {
+  border: 1px solid $steel;
+  width: 75%;
+  background-color: rgba(112,128,144,0.5);
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  align-items: center;
+  overflow: scroll;
+}
+
+.user-details h2 {
+  size: 18pt;
+  color: white;
+}
+
+.dashboard-games {
+  border: 1px solid $steel;
+  width: 75%;
+  background-color: rgba(112,128,144,0.5);
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+
+.results {
+  color: red;
+}
+
+.results-card {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-games h2 {
+  color: white;
+  margin: 10px;
+}
+
+.results p {
+  font-size: 18pt;
+  font-weight: bold;
 }

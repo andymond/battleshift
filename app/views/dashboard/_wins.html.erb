@@ -1,0 +1,21 @@
+<h2>Games in Progress</h2>
+
+<ul>
+  <% count = 1 %>
+  <% current_user.current_games.each do |game| %>
+    <button class="submit-button"><%= link_to "Game ##{count}", game_path(game) %></button>
+    <% count += 1 %>
+  <% end %>
+</ul>
+
+<section class="results">
+  <section class="results-card">
+    <h2>Total Wins:</h2> <p><%= current_user.wins %><p>
+  </section>
+  <section class="results-card">
+    <h2>Total Losses:</h2> <p><%= current_user.losses %><p>
+  </section>
+  <section class="results-card">
+    <h2>W/L Percentage:</h2> <p><%= number_to_percentage(current_user.win_loss_percentage, precision: 0) %><p>
+  </section>
+</section>

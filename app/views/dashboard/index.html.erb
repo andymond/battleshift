@@ -1,5 +1,24 @@
-Logged in as <%= current_user.name %>
+<section class="dashboard-container">
+  <section class="dashboard-header">
+    <h1>BattleShift</h1>
+  </section>
+  <section class="dashboard-body">
+    <section class="user-details">
+      <h2>Logged in as <%= current_user.name %></h2>
+      <section class="submit-button">
+        <%= link_to "Log Out", logout_path, method: :delete %>
+      </section>
 
-<p>Status: <%= current_user.status %></p>
+      <h2>Status: <%= current_user.status %></h2>
 
-<%= link_to "New Game", new_game_path %>
+      <section class="submit-button">
+        <%= link_to "New Game", new_game_path %>
+      </section>
+    </section>
+    <section class="dashboard-games">
+      <%= render partial: "wins" if !current_user.games.empty? %>
+    </section>
+  </section>
+  <section class="dashboard-footer">
+  </section>
+</section

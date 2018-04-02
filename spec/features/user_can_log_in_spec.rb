@@ -6,9 +6,8 @@ describe "user can log in" do
       user = create(:user, status: 1)
       visit root_path
 
-      click_on "Log in"
+      find('.login-button').click
 
-      expect(current_path).to eq(login_path)
       fill_in "email", with: user.email
       fill_in "password", with: user.password
       click_on "Log In"

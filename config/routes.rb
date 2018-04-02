@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users
+
   root 'welcome#index'
   get "/register", :to => 'users#new'
   post "/register", :to => 'users#create'
@@ -19,5 +21,5 @@ Rails.application.routes.draw do
   get "/activation/:id", :to => 'activation#update', as: 'activation'
   get "/login", :to => 'sessions#new', as: 'login'
   post "/login", :to => 'sessions#create'
-  delete "logout", :to => 'sessions#destroy', as: 'logout'
+  delete "/logout", :to => 'sessions#destroy', as: 'logout'
 end
