@@ -14,10 +14,10 @@ class GamesController < ApplicationController
     invited_user = User.find_by(email: params[:opponent_email])
     if invited_user
       Colosseum.create(user_id: invited_user.id, game_id: new_game.id, gladiator_number: 2)
-      UserMailer.game_invite(params[:opponent_email], current_user)
+      UserMailer.game_invite(params[:opponent_email], current_user).deliver_now
       redirect_to game_path(new_game)
     else
-      UserMailer.register_invite(params[:opponent_email], current_user)
+      UserMailer.register_invite(params[:opponent_email], current_user).deliver_now
       flash[:notice] = "We invited your friend @ #{params[:opponent_email]} to join Battleshift!"
       redirect_to dashboard_path
     end
