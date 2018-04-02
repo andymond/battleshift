@@ -1,6 +1,18 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 '587',
+    domain:               'example.com',
+    user_name:            ENV["SENDGRID_UN"],
+    password:             ENV["SENDGRID_PASS"],
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { host: ENV['ROOT'] }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
