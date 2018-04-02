@@ -20,10 +20,6 @@ class ShipPlacer
   attr_reader :board, :ship,
     :start_space, :end_space
 
-  def all_ships_placed?
-    
-  end
-
   def same_row?
     start_space[0] == end_space[0]
   end
