@@ -1,24 +1,27 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# BattleShift ReadMe
 
 * Ruby version
 
-* System dependencies
+2.4.1
 
 * Configuration
 
+Clone this down using `git clone https://github.com/andymond/battleshift.git`
+
+Run `bundle`
+
 * Database creation
 
-* Database initialization
+Run `rails db:setup`
 
 * How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+Run `rails db:test:prepare`
 
-* Deployment instructions
+Run `rspec`
 
-* ...
+* Use Instructions
+
+Open up a local server using `rails s`
+
+Take your favorite browser on a road trip to `localhost:3000`
