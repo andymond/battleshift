@@ -20,8 +20,10 @@ Run `rails db:test:prepare`
 
 Run `rspec`
 
-* Use Instructions
-
 Open up a local server using `rails s`
 
-Take your favorite browser on a road trip to `localhost:3000`
+To play you'll need to be able send a POST request to the proper api endpoint to shoot at another player.
+
+Take a look at the routes file to learn the proper endpoints to play.
+
+We recommend using PostMan or a similar API development environment.
